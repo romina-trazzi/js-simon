@@ -33,10 +33,11 @@ $(function () {
 
     var myClock = setTimeout(typePrompt, 3000);
 
+    var arrayUtente = [];
+
     function typePrompt() {
+
         risultato.style.display = "none";
-        
-        var arrayUtente = [];
         
         for (i = 0; i < 5; i++) {
             var numeriUtente = Number((prompt("Inserisci i numeri che ricordi in ordine casuale")));
@@ -44,44 +45,42 @@ $(function () {
             var risultatoUtente = document.getElementById("user_result");
             risultatoUtente.innerHTML = arrayUtente;  
         }
+        
         // console.log(arrayUtente);
         return arrayUtente;     
     }
 
+    var counter = 0;
+    var matches = [];
+
     // Confrontiamo i numeri contenuti nel primo array con quelli dentro il secondo 
     // Mostriamo di nuovo i numeri generati dal computer
     function comparison (arrayUno, arrayDue) {
-        risultato.style.display = "block";
-
-        var counter = 0;
-        var matches = [];
-        
         for (i = 0; i < arrayUno.length; i++) {
-            for (var e = 0; e < arrayDue.length; e++) {
-               if (arrayUno[i] === arrayDue[e]) {
-                    matches.push(a[i]);
-                    counter = counter + 1;
-                    console.log(matches, counter);
-                }
+            var userItem = arrayUno[i];
 
-           }
+            for (var e = 0; e < arrayDue.length; e++) {
+                var pcItem = arrayDue[e];
+
+                if (userItem === pcItem) {
+                    matches.push(userItem);
+                    counter = counter + 1;
+                }
+            }
         }
 
         return matches;
     }
-
+    
+    
+    risultato.style.display = "block";
     comparison(arrayUtente, arrayPc);
+    console.log(matches, counter);
+    
 
     // Mostriamo a schermo i risultati uguali fra Utente e Pc e il punteggio ottenuto
     var risultatoFinale = document.getElementById("guessed");
-    risultatoFinale.innerHTML = comparison();
-
+    risultatoFinale.innerHTML = matches;
 
     
-}
-    
-
-
-
-
 });
