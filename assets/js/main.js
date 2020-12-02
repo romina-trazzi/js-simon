@@ -46,41 +46,53 @@ $(function () {
             risultatoUtente.innerHTML = arrayUtente;  
         }
         
-        // console.log(arrayUtente);
-        return arrayUtente;     
+        risultato.style.display = "block";
+
+        var qualcosa = comparison(arrayUtente, arrayPc);
+
+        console.log(qualcosa);
+
+
+        // Mostriamo a schermo i risultati uguali fra Utente e Pc e il punteggio ottenuto
+        var risultatoFinale = document.getElementById("guessed");
+        risultatoFinale.innerHTML = qualcosa;
+        
     }
 
-    var counter = 0;
-    var matches = [];
+   
 
     // Confrontiamo i numeri contenuti nel primo array con quelli dentro il secondo 
     // Mostriamo di nuovo i numeri generati dal computer
+    
     function comparison (arrayUno, arrayDue) {
+        // console.log(arrayUno);
+        // console.log(arrayDue);
+
+        var matches = [];
+
         for (i = 0; i < arrayUno.length; i++) {
             var userItem = arrayUno[i];
 
             for (var e = 0; e < arrayDue.length; e++) {
                 var pcItem = arrayDue[e];
 
-                if (userItem === pcItem) {
+                if (userItem == pcItem) {
                     matches.push(userItem);
-                    counter = counter + 1;
                 }
             }
         }
 
         return matches;
-    }
     
-    
-    risultato.style.display = "block";
-    comparison(arrayUtente, arrayPc);
-    console.log(matches, counter);
-    
+    } 
+   
 
-    // Mostriamo a schermo i risultati uguali fra Utente e Pc e il punteggio ottenuto
-    var risultatoFinale = document.getElementById("guessed");
-    risultatoFinale.innerHTML = matches;
+    
 
     
 });
+
+
+
+    
+
